@@ -1,0 +1,69 @@
+version: '3'
+
+networks:
+  xmlparser-network:
+    driver: bridge
+
+services:
+
+        xmlparser:
+            container_name: xmlparser
+            build:
+                context: ./php-fpm
+                args:
+                    - timezone=${TZ}
+            networks:
+                - xmlparser-network
+            ports:
+                - "9000:9000"
+            volumes:
+                - ./../xmlparser:/xmlparser:rw,cached
+                - xmlparser_log:/xmlparser/var/log
+            env_file:
+                - .env
+            depends_on:
+                - db-master
+
+        nginx:
+            container_name: nginx
+            build:
+                context: ./nginx
+                args:
+                    - timezone=${TZ}
+            ports:
+                - "81:80"
+                - "443:443"
+            networks:
+                - xmlparser-network
+            depends_on:
+                - xmlparser
+            volumes:
+                - ./../xmlparser/public:/xmlparser/public
+                - ./nginx/ssl:/etc/nginx/ssl
+                - ./nginx/conf.d:/etc/nginx/conf.d
+                - ./nginx/nginx_log:/var/log/nginx
+                - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+            env_file:
+                - .env
+            command: /bin/bash -c "exec nginx -g 'daemon off;'"
+
+        db-master:
+            container_name: db-master
+            image: mysql:latest
+            env_file:
+                - ./db/master/.env.master
+            ports:
+                - "4406:3306"
+            volumes:
+                - ./db/master/master.sql:/docker-entrypoint-initdb.d/start.sql
+                - ./db/master/mysql.master.cnf:/etc/mysql/conf.d/mysql.master.cnf
+                - ./db/master/.data/mysql:/var/lib/mysql:rw
+            networks:
+                - xmlparser-network
+
+volumes:
+    nginx_log:
+    xmlparser_log:
+    db:
+        driver: local
+

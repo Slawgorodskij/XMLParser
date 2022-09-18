@@ -1,0 +1,4 @@
+/.idea
+/.vscode
+./db/master/.data
+./db/slaves
