@@ -9,23 +9,21 @@ use App\Http\Commands\StockCommandController;
 
 class BaseController extends Controller
 {
-    protected $pathToFile = __DIR__ . '/../../../public/default.xml';
-    //protected $pathToFile = __DIR__ . '/../../../public/xmlparsertest.xml';
 
-    public function index()
+    public function index($pathToFile)
     {
-        $cityAnswer = app(CityCommandController::class)->start($this->pathToFile);
-        print_r($cityAnswer);
+        if($pathToFile===''){
+            $pathToFile = __DIR__ . '/../../../public/default.xml';
+        }
 
-        $salonAnswer = app(SalonCommandController::class)->start($this->pathToFile);
-        print_r($salonAnswer);
+        $cityAnswer = app(CityCommandController::class)->start($pathToFile);
 
-        $modelAnswer = app(ModelAutoCommandController::class)->start($this->pathToFile);
-        print_r($modelAnswer);
+        $salonAnswer = app(SalonCommandController::class)->start($pathToFile);
 
-        $stockAnswer = app(StockCommandController::class)->start($this->pathToFile);
-        print_r($stockAnswer);
+        $modelAnswer = app(ModelAutoCommandController::class)->start($pathToFile);
 
+        $stockAnswer = app(StockCommandController::class)->start($pathToFile);
 
+        return [$cityAnswer, $salonAnswer, $modelAnswer, $stockAnswer];
     }
 }
