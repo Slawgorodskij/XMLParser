@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 5.1.0
+- https://www.phpmyadmin.net
+-
+- Хост: 127.0.0.1:3306
+- Время создания: Сен 16 2022 г., 23:42
+- Версия сервера: 8.0.24
+- Версия PHP: 8.0.8
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="https://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Structure schemas
+    -->
+    <pma:structure_schemas>
+        <pma:database name="xmlparsertest" collation="utf8mb4_0900_ai_ci" charset="utf8mb4">
+            <pma:table name="stocks">
+                CREATE TABLE `stocks` (
+                  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+                  `model_id` bigint unsigned NOT NULL,
+                  `salon_id` bigint unsigned NOT NULL,
+                  `year` int NOT NULL DEFAULT '0',
+                  `price` int NOT NULL DEFAULT '0',
+                  `quantity` int NOT NULL DEFAULT '1',
+                  `reserved` tinyint(1) NOT NULL DEFAULT '0',
+                  `desc` text COLLATE utf8mb4_unicode_ci NOT NULL,
+                  `created_at` timestamp NULL DEFAULT NULL,
+                  `updated_at` timestamp NULL DEFAULT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=2686 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+            </pma:table>
+        </pma:database>
+    </pma:structure_schemas>
+
+    <!--
+    - База данных: 'xmlparsertest'
+    -->
+    <database name="xmlparsertest">
+        <!--
+  - нет таблиц нет изменений
+  -->
+    </database>
+</pma_xml_export>

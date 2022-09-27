@@ -1,0 +1,1529 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 5.1.0
+- https://www.phpmyadmin.net
+-
+- Хост: 127.0.0.1:3306
+- Время создания: Сен 18 2022 г., 02:32
+- Версия сервера: 8.0.24
+- Версия PHP: 8.0.8
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="https://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Structure schemas
+    -->
+    <pma:structure_schemas>
+        <pma:database name="xmlparsertest" collation="utf8mb4_0900_ai_ci" charset="utf8mb4">
+            <pma:table name="cities">
+                CREATE TABLE `cities` (
+                  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+                  `name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+                  `created_at` timestamp NULL DEFAULT NULL,
+                  `updated_at` timestamp NULL DEFAULT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+            </pma:table>
+            <pma:table name="migrations">
+                CREATE TABLE `migrations` (
+                  `id` int unsigned NOT NULL AUTO_INCREMENT,
+                  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+                  `batch` int NOT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+            </pma:table>
+            <pma:table name="models">
+                CREATE TABLE `models` (
+                  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+                  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+                  `created_at` timestamp NULL DEFAULT NULL,
+                  `updated_at` timestamp NULL DEFAULT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+            </pma:table>
+            <pma:table name="model_autos">
+                CREATE TABLE `model_autos` (
+                  `id` bigint NOT NULL AUTO_INCREMENT,
+                  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+                  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+            </pma:table>
+            <pma:table name="personal_access_tokens">
+                CREATE TABLE `personal_access_tokens` (
+                  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+                  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+                  `tokenable_id` bigint unsigned NOT NULL,
+                  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+                  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+                  `abilities` text COLLATE utf8mb4_unicode_ci,
+                  `last_used_at` timestamp NULL DEFAULT NULL,
+                  `expires_at` timestamp NULL DEFAULT NULL,
+                  `created_at` timestamp NULL DEFAULT NULL,
+                  `updated_at` timestamp NULL DEFAULT NULL,
+                  PRIMARY KEY (`id`),
+                  UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
+                  KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+            </pma:table>
+            <pma:table name="salons">
+                CREATE TABLE `salons` (
+                  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+                  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+                  `city_id` bigint unsigned NOT NULL,
+                  `created_at` timestamp NULL DEFAULT NULL,
+                  `updated_at` timestamp NULL DEFAULT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+            </pma:table>
+            <pma:table name="stocks">
+                CREATE TABLE `stocks` (
+                  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+                  `model_id` bigint unsigned NOT NULL,
+                  `salon_id` bigint unsigned NOT NULL,
+                  `year` int NOT NULL DEFAULT '0',
+                  `price` int NOT NULL DEFAULT '0',
+                  `quantity` int NOT NULL DEFAULT '1',
+                  `reserved` tinyint(1) NOT NULL DEFAULT '0',
+                  `desc` text COLLATE utf8mb4_unicode_ci NOT NULL,
+                  `created_at` timestamp NULL DEFAULT NULL,
+                  `updated_at` timestamp NULL DEFAULT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=2686 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+            </pma:table>
+        </pma:database>
+    </pma:structure_schemas>
+
+    <!--
+    - База данных: 'xmlparsertest'
+    -->
+    <database name="xmlparsertest">
+        <!-- Таблица cities -->
+        <table name="cities">
+            <column name="id">4</column>
+            <column name="name">Краснодар</column>
+            <column name="created_at">2021-09-22 12:43:53</column>
+            <column name="updated_at">2021-09-22 12:43:53</column>
+        </table>
+        <table name="cities">
+            <column name="id">5</column>
+            <column name="name">Санкт-Петербург</column>
+            <column name="created_at">2021-09-22 12:43:53</column>
+            <column name="updated_at">2021-12-08 12:49:27</column>
+        </table>
+        <table name="cities">
+            <column name="id">6</column>
+            <column name="name">Казань</column>
+            <column name="created_at">2021-09-22 12:43:53</column>
+            <column name="updated_at">2021-09-22 12:43:53</column>
+        </table>
+        <table name="cities">
+            <column name="id">7</column>
+            <column name="name">Красноярск</column>
+            <column name="created_at">2021-09-22 12:43:53</column>
+            <column name="updated_at">2021-09-22 12:43:53</column>
+        </table>
+        <table name="cities">
+            <column name="id">8</column>
+            <column name="name">Иркутск</column>
+            <column name="created_at">2021-09-22 12:43:53</column>
+            <column name="updated_at">2021-09-22 12:43:53</column>
+        </table>
+        <table name="cities">
+            <column name="id">9</column>
+            <column name="name">Южно-Cахалинск</column>
+            <column name="created_at">2021-09-22 12:43:53</column>
+            <column name="updated_at">2021-12-08 12:43:29</column>
+        </table>
+        <table name="cities">
+            <column name="id">10</column>
+            <column name="name">Москва</column>
+            <column name="created_at">2021-11-22 18:03:42</column>
+            <column name="updated_at">2021-12-08 12:43:29</column>
+        </table>
+        <table name="cities">
+            <column name="id">11</column>
+            <column name="name">Новосибирск</column>
+            <column name="created_at">2022-02-02 17:41:51</column>
+            <column name="updated_at">2022-02-02 17:41:51</column>
+        </table>
+        <!-- Таблица migrations -->
+        <table name="migrations">
+            <column name="id">1</column>
+            <column name="migration">2019_12_14_000001_create_personal_access_tokens_table</column>
+            <column name="batch">1</column>
+        </table>
+        <table name="migrations">
+            <column name="id">2</column>
+            <column name="migration">2022_09_15_021805_create_cities_table</column>
+            <column name="batch">1</column>
+        </table>
+        <table name="migrations">
+            <column name="id">3</column>
+            <column name="migration">2022_09_15_021859_create_salons_table</column>
+            <column name="batch">1</column>
+        </table>
+        <table name="migrations">
+            <column name="id">4</column>
+            <column name="migration">2022_09_15_022003_create_models_table</column>
+            <column name="batch">1</column>
+        </table>
+        <table name="migrations">
+            <column name="id">5</column>
+            <column name="migration">2022_09_15_022019_create_stocks_table</column>
+            <column name="batch">1</column>
+        </table>
+        <!-- Таблица models -->
+        <table name="models">
+            <column name="id">1</column>
+            <column name="name">450 SX-F 2022</column>
+            <column name="created_at">2021-09-23 15:13:09</column>
+            <column name="updated_at">2022-01-25 18:28:02</column>
+        </table>
+        <table name="models">
+            <column name="id">2</column>
+            <column name="name">350 SX-F 2022</column>
+            <column name="created_at">2021-09-29 11:11:49</column>
+            <column name="updated_at">2022-01-25 18:40:33</column>
+        </table>
+        <table name="models">
+            <column name="id">3</column>
+            <column name="name">250 SX-F 2022</column>
+            <column name="created_at">2021-10-04 11:17:06</column>
+            <column name="updated_at">2022-01-26 13:51:10</column>
+        </table>
+        <table name="models">
+            <column name="id">4</column>
+            <column name="name">450 SX-F FACTORY EDITION 2021</column>
+            <column name="created_at">2021-10-04 12:29:34</column>
+            <column name="updated_at">2022-01-26 13:42:28</column>
+        </table>
+        <table name="models">
+            <column name="id">5</column>
+            <column name="name">250 SX-F TROY LEE DESIGNS 2021</column>
+            <column name="created_at">2021-10-04 15:36:16</column>
+            <column name="updated_at">2022-01-26 13:42:11</column>
+        </table>
+        <table name="models">
+            <column name="id">6</column>
+            <column name="name">250 SX 2022</column>
+            <column name="created_at">2021-10-04 16:36:25</column>
+            <column name="updated_at">2022-01-26 12:39:32</column>
+        </table>
+        <table name="models">
+            <column name="id">7</column>
+            <column name="name">150 SX 2022</column>
+            <column name="created_at">2021-10-04 17:34:43</column>
+            <column name="updated_at">2022-01-26 12:46:47</column>
+        </table>
+        <table name="models">
+            <column name="id">8</column>
+            <column name="name">125 SX 2022</column>
+            <column name="created_at">2021-10-04 18:05:33</column>
+            <column name="updated_at">2022-01-26 13:04:05</column>
+        </table>
+        <table name="models">
+            <column name="id">9</column>
+            <column name="name">85 SX 19/16 2022</column>
+            <column name="created_at">2021-10-04 18:27:53</column>
+            <column name="updated_at">2022-01-26 13:54:13</column>
+        </table>
+        <table name="models">
+            <column name="id">10</column>
+            <column name="name">65 SX 2022</column>
+            <column name="created_at">2021-10-05 10:28:02</column>
+            <column name="updated_at">2022-01-26 13:58:35</column>
+        </table>
+        <table name="models">
+            <column name="id">11</column>
+            <column name="name">50 SX 2022</column>
+            <column name="created_at">2021-10-05 11:08:45</column>
+            <column name="updated_at">2022-01-26 13:57:10</column>
+        </table>
+        <table name="models">
+            <column name="id">12</column>
+            <column name="name">50 SX MINI</column>
+            <column name="created_at">2021-10-05 11:37:18</column>
+            <column name="updated_at">2022-01-26 13:40:14</column>
+        </table>
+        <table name="models">
+            <column name="id">13</column>
+            <column name="name">50 SX FACTORY EDITION</column>
+            <column name="created_at">2021-10-05 12:18:42</column>
+            <column name="updated_at">2022-01-26 13:56:01</column>
+        </table>
+        <table name="models">
+            <column name="id">14</column>
+            <column name="name">SX-E 5</column>
+            <column name="created_at">2021-10-05 16:29:28</column>
+            <column name="updated_at">2022-01-10 14:23:38</column>
+        </table>
+        <table name="models">
+            <column name="id">21</column>
+            <column name="name">500 EXC-F 2022</column>
+            <column name="created_at">2021-10-21 17:31:39</column>
+            <column name="updated_at">2022-01-25 18:54:09</column>
+        </table>
+        <table name="models">
+            <column name="id">22</column>
+            <column name="name">450 EXC-F 2022</column>
+            <column name="created_at">2021-10-22 10:41:59</column>
+            <column name="updated_at">2022-01-25 18:55:41</column>
+        </table>
+        <table name="models">
+            <column name="id">23</column>
+            <column name="name">350 EXC-F 2022</column>
+            <column name="created_at">2021-10-22 12:03:24</column>
+            <column name="updated_at">2022-01-25 18:57:15</column>
+        </table>
+        <table name="models">
+            <column name="id">24</column>
+            <column name="name">250 EXC-F 2022</column>
+            <column name="created_at">2021-10-22 14:12:21</column>
+            <column name="updated_at">2022-01-25 18:58:25</column>
+        </table>
+        <table name="models">
+            <column name="id">25</column>
+            <column name="name">500 EXC-F SIX DAYS 2022</column>
+            <column name="created_at">2021-10-22 15:29:08</column>
+            <column name="updated_at">2022-01-25 18:59:37</column>
+        </table>
+        <table name="models">
+            <column name="id">26</column>
+            <column name="name">450 EXC-F SIX DAYS 2022</column>
+            <column name="created_at">2021-10-22 16:43:38</column>
+            <column name="updated_at">2022-01-25 19:00:57</column>
+        </table>
+        <table name="models">
+            <column name="id">27</column>
+            <column name="name">350 EXC-F SIX DAYS 2022</column>
+            <column name="created_at">2021-10-22 17:52:04</column>
+            <column name="updated_at">2022-01-25 19:02:13</column>
+        </table>
+        <table name="models">
+            <column name="id">29</column>
+            <column name="name">250 EXC-F SIX DAYS 2022</column>
+            <column name="created_at">2021-10-25 11:04:13</column>
+            <column name="updated_at">2022-01-25 19:03:17</column>
+        </table>
+        <table name="models">
+            <column name="id">30</column>
+            <column name="name">350 EXC-F WESS 2021</column>
+            <column name="created_at">2021-10-25 13:19:36</column>
+            <column name="updated_at">2022-01-10 14:23:39</column>
+        </table>
+        <table name="models">
+            <column name="id">31</column>
+            <column name="name">300 EXC TPI 2022</column>
+            <column name="created_at">2021-10-25 16:04:08</column>
+            <column name="updated_at">2022-01-27 11:32:49</column>
+        </table>
+        <table name="models">
+            <column name="id">32</column>
+            <column name="name">250 EXC TPI 2022</column>
+            <column name="created_at">2021-10-25 18:21:20</column>
+            <column name="updated_at">2022-01-27 11:33:25</column>
+        </table>
+        <table name="models">
+            <column name="id">33</column>
+            <column name="name">150 EXC TPI 2022</column>
+            <column name="created_at">2021-10-26 11:46:32</column>
+            <column name="updated_at">2022-01-27 11:33:54</column>
+        </table>
+        <table name="models">
+            <column name="id">34</column>
+            <column name="name">300 EXC TPI SIX DAYS 2022</column>
+            <column name="created_at">2021-10-26 12:10:24</column>
+            <column name="updated_at">2022-01-27 11:34:33</column>
+        </table>
+        <table name="models">
+            <column name="id">35</column>
+            <column name="name">250 EXC TPI SIX DAYS 2022</column>
+            <column name="created_at">2021-10-26 12:37:53</column>
+            <column name="updated_at">2022-01-27 11:34:55</column>
+        </table>
+        <table name="models">
+            <column name="id">36</column>
+            <column name="name">1290 SUPER ADVENTURE S 2021</column>
+            <column name="created_at">2021-10-26 14:29:28</column>
+            <column name="updated_at">2022-01-10 14:23:38</column>
+        </table>
+        <table name="models">
+            <column name="id">37</column>
+            <column name="name">1290 SUPER ADVENTURE R 2021</column>
+            <column name="created_at">2021-10-26 14:58:25</column>
+            <column name="updated_at">2022-01-10 14:23:39</column>
+        </table>
+        <table name="models">
+            <column name="id">38</column>
+            <column name="name">890 ADVENTURE R RALLY 2021</column>
+            <column name="created_at">2021-10-26 15:41:49</column>
+            <column name="updated_at">2022-01-10 14:23:39</column>
+        </table>
+        <table name="models">
+            <column name="id">39</column>
+            <column name="name">890 ADVENTURE R 2021</column>
+            <column name="created_at">2021-10-26 16:19:18</column>
+            <column name="updated_at">2022-01-10 14:23:40</column>
+        </table>
+        <table name="models">
+            <column name="id">40</column>
+            <column name="name">890 ADVENTURE 2021</column>
+            <column name="created_at">2021-10-26 17:31:35</column>
+            <column name="updated_at">2022-01-10 14:23:39</column>
+        </table>
+        <table name="models">
+            <column name="id">41</column>
+            <column name="name">890 ADVENTURE L 2021</column>
+            <column name="created_at">2021-10-26 18:17:08</column>
+            <column name="updated_at">2022-01-10 14:23:39</column>
+        </table>
+        <table name="models">
+            <column name="id">42</column>
+            <column name="name">390 ADVENTURE 2021</column>
+            <column name="created_at">2021-10-27 10:49:50</column>
+            <column name="updated_at">2022-01-10 14:23:39</column>
+        </table>
+        <table name="models">
+            <column name="id">43</column>
+            <column name="name">250 ADVENTURE 2021</column>
+            <column name="created_at">2021-10-27 11:51:38</column>
+            <column name="updated_at">2022-01-10 14:23:38</column>
+        </table>
+        <table name="models">
+            <column name="id">44</column>
+            <column name="name">690 ENDURO R 2021</column>
+            <column name="created_at">2021-10-27 12:30:04</column>
+            <column name="updated_at">2022-01-10 14:23:39</column>
+        </table>
+        <table name="models">
+            <column name="id">45</column>
+            <column name="name">450 RALLY FACTORY REPLICA 2021</column>
+            <column name="created_at">2021-10-27 13:50:18</column>
+            <column name="updated_at">2022-01-10 14:23:38</column>
+        </table>
+        <table name="models">
+            <column name="id">46</column>
+            <column name="name">1290 SUPER DUKE GT 2021</column>
+            <column name="created_at">2021-10-27 14:10:37</column>
+            <column name="updated_at">2021-12-24 18:20:51</column>
+        </table>
+        <table name="models">
+            <column name="id">47</column>
+            <column name="name">690 SMC R 2021</column>
+            <column name="created_at">2021-10-27 15:07:05</column>
+            <column name="updated_at">2022-01-10 14:23:38</column>
+        </table>
+        <table name="models">
+            <column name="id">48</column>
+            <column name="name">450 SMR 2022</column>
+            <column name="created_at">2021-10-27 15:27:15</column>
+            <column name="updated_at">2022-01-10 14:23:39</column>
+        </table>
+        <table name="models">
+            <column name="id">49</column>
+            <column name="name">1290 SUPER DUKE RR 2021</column>
+            <column name="created_at">2021-10-27 16:48:43</column>
+            <column name="updated_at">2022-01-10 14:23:38</column>
+        </table>
+        <table name="models">
+            <column name="id">50</column>
+            <column name="name">1290 SUPER DUKE R 2021</column>
+            <column name="created_at">2021-10-27 18:11:24</column>
+            <column name="updated_at">2022-01-10 14:23:39</column>
+        </table>
+        <!-- Таблица model_autos -->
+        <table name="model_autos">
+            <column name="id">1</column>
+            <column name="name">450 SX-F 2022</column>
+            <column name="created_at">2021-09-23 15:13:09</column>
+            <column name="updated_at">2022-01-25 18:28:02</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">2</column>
+            <column name="name">350 SX-F 2022</column>
+            <column name="created_at">2021-09-29 11:11:49</column>
+            <column name="updated_at">2022-01-25 18:40:33</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">3</column>
+            <column name="name">250 SX-F 2022</column>
+            <column name="created_at">2021-10-04 11:17:06</column>
+            <column name="updated_at">2022-01-26 13:51:10</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">4</column>
+            <column name="name">450 SX-F FACTORY EDITION 2021</column>
+            <column name="created_at">2021-10-04 12:29:34</column>
+            <column name="updated_at">2022-01-26 13:42:28</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">5</column>
+            <column name="name">250 SX-F TROY LEE DESIGNS 2021</column>
+            <column name="created_at">2021-10-04 15:36:16</column>
+            <column name="updated_at">2022-01-26 13:42:11</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">6</column>
+            <column name="name">250 SX 2022</column>
+            <column name="created_at">2021-10-04 16:36:25</column>
+            <column name="updated_at">2022-01-26 12:39:32</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">7</column>
+            <column name="name">150 SX 2022</column>
+            <column name="created_at">2021-10-04 17:34:43</column>
+            <column name="updated_at">2022-01-26 12:46:47</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">8</column>
+            <column name="name">125 SX 2022</column>
+            <column name="created_at">2021-10-04 18:05:33</column>
+            <column name="updated_at">2022-01-26 13:04:05</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">9</column>
+            <column name="name">85 SX 19/16 2022</column>
+            <column name="created_at">2021-10-04 18:27:53</column>
+            <column name="updated_at">2022-01-26 13:54:13</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">10</column>
+            <column name="name">65 SX 2022</column>
+            <column name="created_at">2021-10-05 10:28:02</column>
+            <column name="updated_at">2022-01-26 13:58:35</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">11</column>
+            <column name="name">50 SX 2022</column>
+            <column name="created_at">2021-10-05 11:08:45</column>
+            <column name="updated_at">2022-01-26 13:57:10</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">12</column>
+            <column name="name">50 SX MINI</column>
+            <column name="created_at">2021-10-05 11:37:18</column>
+            <column name="updated_at">2022-01-26 13:40:14</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">13</column>
+            <column name="name">50 SX FACTORY EDITION</column>
+            <column name="created_at">2021-10-05 12:18:42</column>
+            <column name="updated_at">2022-01-26 13:56:01</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">14</column>
+            <column name="name">SX-E 5</column>
+            <column name="created_at">2021-10-05 16:29:28</column>
+            <column name="updated_at">2022-01-10 14:23:38</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">21</column>
+            <column name="name">500 EXC-F 2022</column>
+            <column name="created_at">2021-10-21 17:31:39</column>
+            <column name="updated_at">2022-01-25 18:54:09</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">22</column>
+            <column name="name">450 EXC-F 2022</column>
+            <column name="created_at">2021-10-22 10:41:59</column>
+            <column name="updated_at">2022-01-25 18:55:41</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">23</column>
+            <column name="name">350 EXC-F 2022</column>
+            <column name="created_at">2021-10-22 12:03:24</column>
+            <column name="updated_at">2022-01-25 18:57:15</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">24</column>
+            <column name="name">250 EXC-F 2022</column>
+            <column name="created_at">2021-10-22 14:12:21</column>
+            <column name="updated_at">2022-01-25 18:58:25</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">25</column>
+            <column name="name">500 EXC-F SIX DAYS 2022</column>
+            <column name="created_at">2021-10-22 15:29:08</column>
+            <column name="updated_at">2022-01-25 18:59:37</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">26</column>
+            <column name="name">450 EXC-F SIX DAYS 2022</column>
+            <column name="created_at">2021-10-22 16:43:38</column>
+            <column name="updated_at">2022-01-25 19:00:57</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">27</column>
+            <column name="name">350 EXC-F SIX DAYS 2022</column>
+            <column name="created_at">2021-10-22 17:52:04</column>
+            <column name="updated_at">2022-01-25 19:02:13</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">29</column>
+            <column name="name">250 EXC-F SIX DAYS 2022</column>
+            <column name="created_at">2021-10-25 11:04:13</column>
+            <column name="updated_at">2022-01-25 19:03:17</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">30</column>
+            <column name="name">350 EXC-F WESS 2021</column>
+            <column name="created_at">2021-10-25 13:19:36</column>
+            <column name="updated_at">2022-01-10 14:23:39</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">31</column>
+            <column name="name">300 EXC TPI 2022</column>
+            <column name="created_at">2021-10-25 16:04:08</column>
+            <column name="updated_at">2022-01-27 11:32:49</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">32</column>
+            <column name="name">250 EXC TPI 2022</column>
+            <column name="created_at">2021-10-25 18:21:20</column>
+            <column name="updated_at">2022-01-27 11:33:25</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">33</column>
+            <column name="name">150 EXC TPI 2022</column>
+            <column name="created_at">2021-10-26 11:46:32</column>
+            <column name="updated_at">2022-01-27 11:33:54</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">34</column>
+            <column name="name">300 EXC TPI SIX DAYS 2022</column>
+            <column name="created_at">2021-10-26 12:10:24</column>
+            <column name="updated_at">2022-01-27 11:34:33</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">35</column>
+            <column name="name">250 EXC TPI SIX DAYS 2022</column>
+            <column name="created_at">2021-10-26 12:37:53</column>
+            <column name="updated_at">2022-01-27 11:34:55</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">36</column>
+            <column name="name">1290 SUPER ADVENTURE S 2021</column>
+            <column name="created_at">2021-10-26 14:29:28</column>
+            <column name="updated_at">2022-01-10 14:23:38</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">37</column>
+            <column name="name">1290 SUPER ADVENTURE R 2021</column>
+            <column name="created_at">2021-10-26 14:58:25</column>
+            <column name="updated_at">2022-01-10 14:23:39</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">38</column>
+            <column name="name">890 ADVENTURE R RALLY 2021</column>
+            <column name="created_at">2021-10-26 15:41:49</column>
+            <column name="updated_at">2022-01-10 14:23:39</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">39</column>
+            <column name="name">890 ADVENTURE R 2021</column>
+            <column name="created_at">2021-10-26 16:19:18</column>
+            <column name="updated_at">2022-01-10 14:23:40</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">40</column>
+            <column name="name">890 ADVENTURE 2021</column>
+            <column name="created_at">2021-10-26 17:31:35</column>
+            <column name="updated_at">2022-01-10 14:23:39</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">41</column>
+            <column name="name">890 ADVENTURE L 2021</column>
+            <column name="created_at">2021-10-26 18:17:08</column>
+            <column name="updated_at">2022-01-10 14:23:39</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">42</column>
+            <column name="name">390 ADVENTURE 2021</column>
+            <column name="created_at">2021-10-27 10:49:50</column>
+            <column name="updated_at">2022-01-10 14:23:39</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">43</column>
+            <column name="name">250 ADVENTURE 2021</column>
+            <column name="created_at">2021-10-27 11:51:38</column>
+            <column name="updated_at">2022-01-10 14:23:38</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">44</column>
+            <column name="name">690 ENDURO R 2021</column>
+            <column name="created_at">2021-10-27 12:30:04</column>
+            <column name="updated_at">2022-01-10 14:23:39</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">45</column>
+            <column name="name">450 RALLY FACTORY REPLICA 2021</column>
+            <column name="created_at">2021-10-27 13:50:18</column>
+            <column name="updated_at">2022-01-10 14:23:38</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">46</column>
+            <column name="name">1290 SUPER DUKE GT 2021</column>
+            <column name="created_at">2021-10-27 14:10:37</column>
+            <column name="updated_at">2021-12-24 18:20:51</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">47</column>
+            <column name="name">690 SMC R 2021</column>
+            <column name="created_at">2021-10-27 15:07:05</column>
+            <column name="updated_at">2022-01-10 14:23:38</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">48</column>
+            <column name="name">450 SMR 2022</column>
+            <column name="created_at">2021-10-27 15:27:15</column>
+            <column name="updated_at">2022-01-10 14:23:39</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">49</column>
+            <column name="name">1290 SUPER DUKE RR 2021</column>
+            <column name="created_at">2021-10-27 16:48:43</column>
+            <column name="updated_at">2022-01-10 14:23:38</column>
+        </table>
+        <table name="model_autos">
+            <column name="id">50</column>
+            <column name="name">1290 SUPER DUKE R 2021</column>
+            <column name="created_at">2021-10-27 18:11:24</column>
+            <column name="updated_at">2022-01-10 14:23:39</column>
+        </table>
+        <!-- Таблица personal_access_tokens -->
+        <!-- Таблица salons -->
+        <table name="salons">
+            <column name="id">1</column>
+            <column name="name">Автоцентр КАШИРКА</column>
+            <column name="city_id">10</column>
+            <column name="created_at">2021-09-21 15:33:44</column>
+            <column name="updated_at">2022-06-20 18:53:29</column>
+        </table>
+        <table name="salons">
+            <column name="id">2</column>
+            <column name="name">Автоцентр ХИМКИ</column>
+            <column name="city_id">10</column>
+            <column name="created_at">2021-09-21 15:33:44</column>
+            <column name="updated_at">2022-06-20 18:53:33</column>
+        </table>
+        <table name="salons">
+            <column name="id">3</column>
+            <column name="name">Автоцентр КРАСНОДАР</column>
+            <column name="city_id">4</column>
+            <column name="created_at">2021-09-21 15:33:44</column>
+            <column name="updated_at">2022-06-20 18:53:37</column>
+        </table>
+        <table name="salons">
+            <column name="id">5</column>
+            <column name="name">Автоцентр КАЗАНЬ</column>
+            <column name="city_id">6</column>
+            <column name="created_at">2021-09-21 15:33:44</column>
+            <column name="updated_at">2022-06-21 10:42:17</column>
+        </table>
+        <table name="salons">
+            <column name="id">6</column>
+            <column name="name">Автоцентр КРАСНОЯРСК</column>
+            <column name="city_id">7</column>
+            <column name="created_at">2021-09-21 15:33:44</column>
+            <column name="updated_at">2022-06-20 18:53:52</column>
+        </table>
+        <table name="salons">
+            <column name="id">7</column>
+            <column name="name">Автоцентр БАЙКАЛ</column>
+            <column name="city_id">8</column>
+            <column name="created_at">2021-09-21 15:33:44</column>
+            <column name="updated_at">2022-06-20 18:53:55</column>
+        </table>
+        <table name="salons">
+            <column name="id">8</column>
+            <column name="name">Автоцентр САХАЛИН</column>
+            <column name="city_id">9</column>
+            <column name="created_at">2021-09-21 15:33:44</column>
+            <column name="updated_at">2022-06-20 18:53:57</column>
+        </table>
+        <!-- Таблица stocks -->
+        <table name="stocks">
+            <column name="id">2621</column>
+            <column name="model_id">53</column>
+            <column name="salon_id">4</column>
+            <column name="year">2021</column>
+            <column name="price">504900</column>
+            <column name="quantity">4</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:02:02</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2622</column>
+            <column name="model_id">4</column>
+            <column name="salon_id">9</column>
+            <column name="year">2021</column>
+            <column name="price">599900</column>
+            <column name="quantity">4</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-06-21 10:24:38</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2623</column>
+            <column name="model_id">42</column>
+            <column name="salon_id">9</column>
+            <column name="year">2021</column>
+            <column name="price">599900</column>
+            <column name="quantity">4</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:02:02</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2624</column>
+            <column name="model_id">53</column>
+            <column name="salon_id">7</column>
+            <column name="year">2021</column>
+            <column name="price">504900</column>
+            <column name="quantity">4</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:02:03</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2625</column>
+            <column name="model_id">53</column>
+            <column name="salon_id">9</column>
+            <column name="year">2021</column>
+            <column name="price">504900</column>
+            <column name="quantity">4</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:02:03</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2626</column>
+            <column name="model_id">53</column>
+            <column name="salon_id">9</column>
+            <column name="year">2021</column>
+            <column name="price">504900</column>
+            <column name="quantity">4</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:02:04</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2627</column>
+            <column name="model_id">53</column>
+            <column name="salon_id">9</column>
+            <column name="year">2021</column>
+            <column name="price">504900</column>
+            <column name="quantity">4</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:02:05</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2628</column>
+            <column name="model_id">53</column>
+            <column name="salon_id">9</column>
+            <column name="year">2021</column>
+            <column name="price">504900</column>
+            <column name="quantity">4</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:02:05</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2629</column>
+            <column name="model_id">53</column>
+            <column name="salon_id">6</column>
+            <column name="year">2021</column>
+            <column name="price">504900</column>
+            <column name="quantity">4</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:02:06</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2630</column>
+            <column name="model_id">53</column>
+            <column name="salon_id">9</column>
+            <column name="year">2021</column>
+            <column name="price">504900</column>
+            <column name="quantity">4</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:02:06</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2631</column>
+            <column name="model_id">53</column>
+            <column name="salon_id">9</column>
+            <column name="year">2021</column>
+            <column name="price">504900</column>
+            <column name="quantity">4</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:04:02</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2632</column>
+            <column name="model_id">43</column>
+            <column name="salon_id">9</column>
+            <column name="year">2021</column>
+            <column name="price">419900</column>
+            <column name="quantity">3</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:04:02</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2633</column>
+            <column name="model_id">43</column>
+            <column name="salon_id">7</column>
+            <column name="year">2021</column>
+            <column name="price">499900</column>
+            <column name="quantity">3</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:04:03</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2634</column>
+            <column name="model_id">43</column>
+            <column name="salon_id">9</column>
+            <column name="year">2021</column>
+            <column name="price">419900</column>
+            <column name="quantity">3</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:04:03</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2635</column>
+            <column name="model_id">40</column>
+            <column name="salon_id">9</column>
+            <column name="year">2021</column>
+            <column name="price">1379900</column>
+            <column name="quantity">1</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:04:04</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2636</column>
+            <column name="model_id">37</column>
+            <column name="salon_id">9</column>
+            <column name="year">2021</column>
+            <column name="price">2129900</column>
+            <column name="quantity">1</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:04:05</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2637</column>
+            <column name="model_id">46</column>
+            <column name="salon_id">3</column>
+            <column name="year">2021</column>
+            <column name="price">2114900</column>
+            <column name="quantity">1</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:04:06</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2638</column>
+            <column name="model_id">37</column>
+            <column name="salon_id">7</column>
+            <column name="year">2021</column>
+            <column name="price">2129900</column>
+            <column name="quantity">1</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:04:07</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2639</column>
+            <column name="model_id">50</column>
+            <column name="salon_id">9</column>
+            <column name="year">2021</column>
+            <column name="price">2019900</column>
+            <column name="quantity">1</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:04:08</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2640</column>
+            <column name="model_id">50</column>
+            <column name="salon_id">9</column>
+            <column name="year">2021</column>
+            <column name="price">2019900</column>
+            <column name="quantity">1</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:04:09</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2641</column>
+            <column name="model_id">39</column>
+            <column name="salon_id">9</column>
+            <column name="year">2021</column>
+            <column name="price">1489900</column>
+            <column name="quantity">1</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:06:02</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2642</column>
+            <column name="model_id">39</column>
+            <column name="salon_id">9</column>
+            <column name="year">2021</column>
+            <column name="price">1489900</column>
+            <column name="quantity">1</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:06:03</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2643</column>
+            <column name="model_id">39</column>
+            <column name="salon_id">7</column>
+            <column name="year">2021</column>
+            <column name="price">1489900</column>
+            <column name="quantity">1</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:06:03</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2644</column>
+            <column name="model_id">43</column>
+            <column name="salon_id">6</column>
+            <column name="year">2021</column>
+            <column name="price">499900</column>
+            <column name="quantity">3</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:06:04</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2645</column>
+            <column name="model_id">36</column>
+            <column name="salon_id">3</column>
+            <column name="year">2021</column>
+            <column name="price">1999900</column>
+            <column name="quantity">1</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:06:04</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2646</column>
+            <column name="model_id">43</column>
+            <column name="salon_id">9</column>
+            <column name="year">2021</column>
+            <column name="price">499900</column>
+            <column name="quantity">3</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:06:04</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2647</column>
+            <column name="model_id">37</column>
+            <column name="salon_id">9</column>
+            <column name="year">2021</column>
+            <column name="price">2129900</column>
+            <column name="quantity">1</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:06:05</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2648</column>
+            <column name="model_id">52</column>
+            <column name="salon_id">9</column>
+            <column name="year">2021</column>
+            <column name="price">1239900</column>
+            <column name="quantity">1</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:06:05</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2649</column>
+            <column name="model_id">42</column>
+            <column name="salon_id">4</column>
+            <column name="year">2021</column>
+            <column name="price">599900</column>
+            <column name="quantity">4</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:06:06</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2650</column>
+            <column name="model_id">36</column>
+            <column name="salon_id">9</column>
+            <column name="year">2021</column>
+            <column name="price">1999900</column>
+            <column name="quantity">1</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:06:06</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2651</column>
+            <column name="model_id">52</column>
+            <column name="salon_id">3</column>
+            <column name="year">2021</column>
+            <column name="price">1239900</column>
+            <column name="quantity">1</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:08:02</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2652</column>
+            <column name="model_id">52</column>
+            <column name="salon_id">4</column>
+            <column name="year">2021</column>
+            <column name="price">1239900</column>
+            <column name="quantity">1</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:08:03</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2653</column>
+            <column name="model_id">10</column>
+            <column name="salon_id">4</column>
+            <column name="year">2022</column>
+            <column name="price">509900</column>
+            <column name="quantity">6</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:08:03</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2654</column>
+            <column name="model_id">33</column>
+            <column name="salon_id">9</column>
+            <column name="year">2022</column>
+            <column name="price">869900</column>
+            <column name="quantity">7</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:08:04</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2655</column>
+            <column name="model_id">23</column>
+            <column name="salon_id">7</column>
+            <column name="year">2021</column>
+            <column name="price">1104900</column>
+            <column name="quantity">4</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:08:04</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2656</column>
+            <column name="model_id">36</column>
+            <column name="salon_id">4</column>
+            <column name="year">2021</column>
+            <column name="price">1999900</column>
+            <column name="quantity">16</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:08:05</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2657</column>
+            <column name="model_id">53</column>
+            <column name="salon_id">9</column>
+            <column name="year">2021</column>
+            <column name="price">504900</column>
+            <column name="quantity">4</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:08:05</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2658</column>
+            <column name="model_id">53</column>
+            <column name="salon_id">9</column>
+            <column name="year">2021</column>
+            <column name="price">504900</column>
+            <column name="quantity">4</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:08:06</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2659</column>
+            <column name="model_id">53</column>
+            <column name="salon_id">5</column>
+            <column name="year">2021</column>
+            <column name="price">504900</column>
+            <column name="quantity">4</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:08:06</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2660</column>
+            <column name="model_id">53</column>
+            <column name="salon_id">9</column>
+            <column name="year">2021</column>
+            <column name="price">504900</column>
+            <column name="quantity">4</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:08:07</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2661</column>
+            <column name="model_id">53</column>
+            <column name="salon_id">9</column>
+            <column name="year">2021</column>
+            <column name="price">504900</column>
+            <column name="quantity">4</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:10:02</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2662</column>
+            <column name="model_id">43</column>
+            <column name="salon_id">7</column>
+            <column name="year">2021</column>
+            <column name="price">499900</column>
+            <column name="quantity">3</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:10:03</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2663</column>
+            <column name="model_id">43</column>
+            <column name="salon_id">9</column>
+            <column name="year">2021</column>
+            <column name="price">419900</column>
+            <column name="quantity">3</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:10:03</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2664</column>
+            <column name="model_id">40</column>
+            <column name="salon_id">3</column>
+            <column name="year">2021</column>
+            <column name="price">1379900</column>
+            <column name="quantity">1</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:10:05</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2665</column>
+            <column name="model_id">40</column>
+            <column name="salon_id">9</column>
+            <column name="year">2021</column>
+            <column name="price">1379900</column>
+            <column name="quantity">1</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:10:05</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2666</column>
+            <column name="model_id">53</column>
+            <column name="salon_id">3</column>
+            <column name="year">2021</column>
+            <column name="price">504900</column>
+            <column name="quantity">4</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:10:06</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2667</column>
+            <column name="model_id">53</column>
+            <column name="salon_id">3</column>
+            <column name="year">2021</column>
+            <column name="price">504900</column>
+            <column name="quantity">4</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:10:06</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2668</column>
+            <column name="model_id">54</column>
+            <column name="salon_id">3</column>
+            <column name="year">2021</column>
+            <column name="price">324900</column>
+            <column name="quantity">2</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:10:07</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2669</column>
+            <column name="model_id">54</column>
+            <column name="salon_id">3</column>
+            <column name="year">2021</column>
+            <column name="price">324900</column>
+            <column name="quantity">2</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:10:07</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2670</column>
+            <column name="model_id">54</column>
+            <column name="salon_id">6</column>
+            <column name="year">2021</column>
+            <column name="price">324900</column>
+            <column name="quantity">2</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:10:08</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2671</column>
+            <column name="model_id">54</column>
+            <column name="salon_id">9</column>
+            <column name="year">2021</column>
+            <column name="price">324900</column>
+            <column name="quantity">2</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:12:02</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2672</column>
+            <column name="model_id">54</column>
+            <column name="salon_id">9</column>
+            <column name="year">2021</column>
+            <column name="price">324900</column>
+            <column name="quantity">2</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:12:02</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2673</column>
+            <column name="model_id">54</column>
+            <column name="salon_id">4</column>
+            <column name="year">2021</column>
+            <column name="price">324900</column>
+            <column name="quantity">2</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:12:03</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2674</column>
+            <column name="model_id">54</column>
+            <column name="salon_id">4</column>
+            <column name="year">2021</column>
+            <column name="price">324900</column>
+            <column name="quantity">2</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:12:03</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2675</column>
+            <column name="model_id">43</column>
+            <column name="salon_id">3</column>
+            <column name="year">2021</column>
+            <column name="price">499900</column>
+            <column name="quantity">3</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:12:03</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2676</column>
+            <column name="model_id">36</column>
+            <column name="salon_id">9</column>
+            <column name="year">2021</column>
+            <column name="price">1999900</column>
+            <column name="quantity">1</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:12:04</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2677</column>
+            <column name="model_id">36</column>
+            <column name="salon_id">6</column>
+            <column name="year">2021</column>
+            <column name="price">1999900</column>
+            <column name="quantity">1</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:12:04</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2678</column>
+            <column name="model_id">36</column>
+            <column name="salon_id">3</column>
+            <column name="year">2021</column>
+            <column name="price">1999900</column>
+            <column name="quantity">1</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:12:05</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2679</column>
+            <column name="model_id">36</column>
+            <column name="salon_id">9</column>
+            <column name="year">2021</column>
+            <column name="price">1999900</column>
+            <column name="quantity">1</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:12:05</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2680</column>
+            <column name="model_id">42</column>
+            <column name="salon_id">3</column>
+            <column name="year">2021</column>
+            <column name="price">599900</column>
+            <column name="quantity">4</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:12:06</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2681</column>
+            <column name="model_id">42</column>
+            <column name="salon_id">6</column>
+            <column name="year">2021</column>
+            <column name="price">599900</column>
+            <column name="quantity">4</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:14:02</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2682</column>
+            <column name="model_id">51</column>
+            <column name="salon_id">3</column>
+            <column name="year">2021</column>
+            <column name="price">1379900</column>
+            <column name="quantity">1</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:14:02</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2683</column>
+            <column name="model_id">51</column>
+            <column name="salon_id">3</column>
+            <column name="year">2021</column>
+            <column name="price">1369900</column>
+            <column name="quantity">1</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:14:03</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2684</column>
+            <column name="model_id">50</column>
+            <column name="salon_id">3</column>
+            <column name="year">2021</column>
+            <column name="price">2019900</column>
+            <column name="quantity">1</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:14:03</column>
+        </table>
+        <table name="stocks">
+            <column name="id">2685</column>
+            <column name="model_id">37</column>
+            <column name="salon_id">3</column>
+            <column name="year">2021</column>
+            <column name="price">2129900</column>
+            <column name="quantity">1</column>
+            <column name="reserved">0</column>
+            <column name="desc">Text</column>
+            <column name="created_at">2022-01-11 12:00:51</column>
+            <column name="updated_at">2022-01-11 12:14:04</column>
+        </table>
+    </database>
+</pma_xml_export>
